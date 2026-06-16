@@ -1,0 +1,70 @@
+.sidebar {
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  padding: 2.2rem 1.6rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.2rem;
+}
+
+.brand span {
+  color: var(--brass-soft);
+  font-style: italic;
+  display: block;
+  font-size: 1.1rem;
+}
+
+.brandSub {
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-top: 0.7rem;
+}
+
+.nav {
+  margin-top: 2.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.foot {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  color: var(--cream-dim);
+}
+
+.name {
+  color: var(--cream);
+  font-weight: 400;
+}
+
+/* Off-canvas drawer on mobile */
+@media (max-width: 860px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-w);
+    transform: translateX(-100%);
+    transition: transform 0.3s var(--ease);
+    z-index: 50;
+  }
+  .open {
+    transform: none;
+  }
+}

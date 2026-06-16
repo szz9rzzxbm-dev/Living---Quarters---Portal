@@ -1,0 +1,30 @@
+.btn {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--brass-soft);
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-btn);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+  border: none;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background: var(--brass);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--brass-soft);
+  border: 1px solid var(--brass);
+}
+
+.ghost:hover {
+  background: var(--panel-2);
+}

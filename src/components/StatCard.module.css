@@ -1,0 +1,31 @@
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.lbl {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.7rem;
+}
+
+.big {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.small {
+  font-size: 1.4rem;
+}
+
+.sm {
+  font-size: 0.78rem;
+  color: var(--cream-dim);
+  margin-top: 0.4rem;
+}

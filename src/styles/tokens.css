@@ -1,0 +1,33 @@
+/* ============================================================
+   The Living Quarters — Design system tokens
+   Source of truth for colour, type and shape.
+   ============================================================ */
+
+:root {
+  /* ---- Colour ---- */
+  --ink: #15130f;        /* near-black background */
+  --panel: #1c1915;      /* elevated surfaces / cards */
+  --panel-2: #23201a;    /* nested panels */
+  --cream: #ede6d6;      /* primary text */
+  --cream-dim: #a89f8c;  /* secondary / muted text */
+  --cream-faint: #6e665725;
+  --line: #332e25;       /* borders and dividers */
+  --brass: #b08d57;      /* primary accent — use sparingly */
+  --brass-soft: #c9a876; /* softer accent for interactive states */
+  --green: #7e8b5c;      /* success / paid states */
+
+  /* ---- Typography ---- */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ---- Shape ---- */
+  --radius: 3px;        /* cards / panels */
+  --radius-btn: 2px;    /* buttons, chips */
+
+  /* ---- Layout ---- */
+  --sidebar-w: 240px;
+  --content-max: 1000px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}

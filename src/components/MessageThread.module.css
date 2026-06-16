@@ -1,0 +1,43 @@
+.msg {
+  display: flex;
+  gap: 0.9rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.msg:last-child {
+  border-bottom: none;
+}
+
+.av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--panel-2);
+  border: 1px solid var(--brass);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  color: var(--brass-soft);
+  font-size: 1rem;
+}
+
+.who {
+  font-size: 0.8rem;
+  color: var(--brass-soft);
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.txt {
+  font-size: 0.9rem;
+  color: var(--cream);
+}
+
+.tm {
+  font-size: 0.7rem;
+  color: var(--cream-dim);
+  margin-top: 0.3rem;
+}

@@ -1,0 +1,30 @@
+.spec {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+  gap: 1rem;
+}
+
+.spec:last-child {
+  border-bottom: none;
+}
+
+.k {
+  font-size: 0.82rem;
+  color: var(--cream-dim);
+}
+
+.v {
+  font-size: 0.88rem;
+  color: var(--cream);
+  text-align: right;
+  font-weight: 400;
+}
+
+.v small {
+  display: block;
+  color: var(--cream-dim);
+  font-size: 0.72rem;
+  font-weight: 300;
+}

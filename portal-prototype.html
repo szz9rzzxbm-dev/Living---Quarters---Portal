@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Living Quarters — Client Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15130F;
+    --panel:#1C1915;
+    --panel-2:#23201A;
+    --cream:#EDE6D6;
+    --cream-dim:#A89F8C;
+    --cream-faint:#6E665725;
+    --line:#332E25;
+    --brass:#B08D57;
+    --brass-soft:#C9A876;
+    --green:#7E8B5C;
+    --radius:3px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);color:var(--cream);
+    font-family:'Inter',sans-serif;font-weight:300;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== layout shell ===== */
+  .shell{display:grid;grid-template-columns:240px 1fr;min-height:100vh;}
+
+  /* ===== sidebar ===== */
+  aside{
+    background:var(--panel);border-right:1px solid var(--line);
+    padding:2.2rem 1.6rem;position:sticky;top:0;height:100vh;
+    display:flex;flex-direction:column;
+  }
+  .brand{font-family:'Cormorant Garamond';font-weight:500;font-size:1.45rem;
+    line-height:1.1;letter-spacing:.01em;margin-bottom:.2rem;}
+  .brand span{color:var(--brass-soft);font-style:italic;display:block;font-size:1.1rem;}
+  .brand-sub{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--brass);margin-top:.7rem;}
+  nav{margin-top:2.6rem;display:flex;flex-direction:column;gap:.15rem;}
+  .nav-item{
+    display:flex;align-items:center;gap:.7rem;padding:.6rem .7rem;
+    border-radius:var(--radius);font-size:.9rem;color:var(--cream-dim);
+    cursor:pointer;transition:all .2s ease;font-weight:400;
+  }
+  .nav-item:hover{background:var(--panel-2);color:var(--cream);}
+  .nav-item.active{background:var(--panel-2);color:var(--cream);}
+  .nav-item.active .dot{background:var(--brass);}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--line);flex:none;transition:background .2s;}
+  .side-foot{margin-top:auto;padding-top:1.5rem;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--cream-dim);}
+  .side-foot .name{color:var(--cream);font-weight:400;}
+
+  /* ===== main ===== */
+  main{padding:2.6rem 3rem 6rem;max-width:1000px;}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:2.4rem;border-bottom:1px solid var(--line);padding-bottom:1.8rem;}
+  .greeting .eyebrow{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--brass);margin-bottom:.7rem;}
+  .greeting h1{font-family:'Cormorant Garamond';font-weight:500;font-size:2.4rem;line-height:1.05;}
+  .greeting h1 em{font-style:italic;color:var(--brass-soft);}
+  .ref{text-align:right;font-size:.8rem;color:var(--cream-dim);}
+  .ref b{display:block;color:var(--cream);font-weight:400;font-size:.95rem;letter-spacing:.05em;}
+
+  /* panels */
+  .panel{background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);padding:1.8rem;margin-bottom:1.4rem;}
+  .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;}
+  .panel-head h2{font-family:'Cormorant Garamond';font-weight:500;font-size:1.4rem;}
+  .panel-head .tag{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--brass);border:1px solid var(--brass);padding:.25rem .6rem;border-radius:2px;}
+
+  /* ===== progress tracker ===== */
+  .track{display:flex;flex-direction:column;gap:0;}
+  .step{display:grid;grid-template-columns:2rem 1fr auto;gap:1rem;align-items:start;
+    padding:.55rem 0;position:relative;}
+  .step .marker{display:flex;flex-direction:column;align-items:center;}
+  .step .ring{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--line);
+    background:var(--ink);flex:none;margin-top:.25rem;z-index:1;}
+  .step .bar{width:1.5px;flex:1;background:var(--line);min-height:24px;margin-top:2px;}
+  .step:last-child .bar{display:none;}
+  .step.done .ring{background:var(--brass);border-color:var(--brass);}
+  .step.done .bar{background:var(--brass);}
+  .step.current .ring{border-color:var(--brass-soft);background:var(--brass-soft);
+    box-shadow:0 0 0 4px rgba(176,141,87,.18);}
+  .step .label{font-size:.95rem;color:var(--cream-dim);font-weight:400;}
+  .step.done .label,.step.current .label{color:var(--cream);}
+  .step.current .label{color:var(--brass-soft);font-weight:500;}
+  .step .when{font-size:.78rem;color:var(--cream-dim);text-align:right;white-space:nowrap;}
+  .step .sub{font-size:.78rem;color:var(--cream-dim);margin-top:.15rem;}
+
+  /* ===== generic rows ===== */
+  .row{display:flex;justify-content:space-between;align-items:center;
+    padding:.95rem 0;border-bottom:1px solid var(--line);}
+  .row:last-child{border-bottom:none;}
+  .row .lead{display:flex;flex-direction:column;gap:.15rem;}
+  .row .lead .t{font-size:.95rem;color:var(--cream);font-weight:400;}
+  .row .lead .s{font-size:.78rem;color:var(--cream-dim);}
+  .row .meta{text-align:right;font-size:.8rem;color:var(--cream-dim);}
+
+  .chip{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:.25rem .55rem;border-radius:2px;font-weight:500;white-space:nowrap;}
+  .chip.paid{color:var(--green);border:1px solid var(--green);}
+  .chip.due{color:var(--brass-soft);border:1px solid var(--brass);}
+  .chip.upcoming{color:var(--cream-dim);border:1px solid var(--line);}
+  .chip.signed{color:var(--green);border:1px solid var(--green);}
+
+  .btn{display:inline-block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink);background:var(--brass-soft);padding:.55rem 1.1rem;border-radius:2px;
+    font-weight:500;cursor:pointer;transition:background .2s;border:none;font-family:inherit;}
+  .btn:hover{background:var(--brass);}
+  .btn.ghost{background:transparent;color:var(--brass-soft);border:1px solid var(--brass);}
+  .btn.ghost:hover{background:var(--panel-2);}
+
+  /* ===== two-column grid ===== */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+
+  /* appliances / specs */
+  .spec{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--line);}
+  .spec:last-child{border-bottom:none;}
+  .spec .k{font-size:.82rem;color:var(--cream-dim);}
+  .spec .v{font-size:.88rem;color:var(--cream);text-align:right;font-weight:400;}
+  .spec .v small{display:block;color:var(--cream-dim);font-size:.72rem;font-weight:300;}
+
+  /* affiliate cards */
+  .aff{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+  .aff-card{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .2s;}
+  .aff-card:hover{border-color:var(--brass);}
+  .aff-card .cat{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);}
+  .aff-card .nm{font-family:'Cormorant Garamond';font-size:1.15rem;color:var(--cream);line-height:1.2;}
+  .aff-card .pr{font-size:.8rem;color:var(--cream-dim);}
+  .aff-card .lk{margin-top:auto;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--brass-soft);display:flex;align-items:center;gap:.4rem;}
+  .aff-card .lk::after{content:'↗';}
+
+  /* messages */
+  .msg{display:flex;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--line);}
+  .msg:last-child{border-bottom:none;}
+  .msg .av{width:34px;height:34px;border-radius:50%;background:var(--panel-2);
+    border:1px solid var(--brass);flex:none;display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond';color:var(--brass-soft);font-size:1rem;}
+  .msg .body .who{font-size:.8rem;color:var(--brass-soft);font-weight:500;margin-bottom:.2rem;}
+  .msg .body .txt{font-size:.9rem;color:var(--cream);}
+  .msg .body .tm{font-size:.7rem;color:var(--cream-dim);margin-top:.3rem;}
+
+  /* summary stat cards */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:1.4rem;}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;}
+  .stat .lbl{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:.7rem;}
+  .stat .big{font-family:'Cormorant Garamond';font-size:1.9rem;color:var(--cream);line-height:1;}
+  .stat .big.small{font-size:1.4rem;}
+  .stat .sm{font-size:.78rem;color:var(--cream-dim);margin-top:.4rem;}
+
+  .view{display:none;}
+  .view.active{display:block;animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  /* mobile */
+  .menu-btn{display:none;}
+  @media(max-width:860px){
+    .shell{grid-template-columns:1fr;}
+    aside{position:fixed;left:0;top:0;width:240px;transform:translateX(-100%);
+      transition:transform .3s ease;z-index:50;}
+    aside.open{transform:none;}
+    main{padding:1.6rem 1.4rem 5rem;}
+    .menu-btn{display:flex;position:fixed;top:1rem;right:1rem;z-index:40;
+      background:var(--panel);border:1px solid var(--line);color:var(--cream);
+      width:42px;height:42px;border-radius:var(--radius);align-items:center;
+      justify-content:center;font-size:1.2rem;cursor:pointer;}
+    .grid2,.aff,.stats{grid-template-columns:1fr;}
+    .topbar{flex-direction:column;align-items:flex-start;gap:1rem;}
+    .ref{text-align:left;}
+    .greeting h1{font-size:1.9rem;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside id="sidebar">
+    <div>
+      <div class="brand">The Living<span>Quarters</span></div>
+      <div class="brand-sub">Client Portal</div>
+    </div>
+    <nav>
+      <div class="nav-item active" data-view="overview"><span class="dot"></span>Overview</div>
+      <div class="nav-item" data-view="progress"><span class="dot"></span>Project Progress</div>
+      <div class="nav-item" data-view="specs"><span class="dot"></span>Design &amp; Appliances</div>
+      <div class="nav-item" data-view="documents"><span class="dot"></span>Contract &amp; Documents</div>
+      <div class="nav-item" data-view="payments"><span class="dot"></span>Invoices &amp; Payments</div>
+      <div class="nav-item" data-view="shop"><span class="dot"></span>Furnish Your Space</div>
+      <div class="nav-item" data-view="messages"><span class="dot"></span>Messages</div>
+    </nav>
+    <div class="side-foot">
+      <div class="name">Eleanor &amp; James Whitlock</div>
+      <div>The Old Rectory, Surrey</div>
+    </div>
+  </aside>
+  <div class="menu-btn" id="menuBtn">☰</div>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+
+    <!-- ===== OVERVIEW ===== -->
+    <section class="view active" id="overview">
+      <div class="topbar">
+        <div class="greeting">
+          <div class="eyebrow">Welcome back</div>
+          <h1>Good afternoon, <em>Eleanor.</em></h1>
+        </div>
+        <div class="ref">Project reference<b>LQ-2618</b></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="lbl">Current Stage</div>
+          <div class="big small">In Manufacture</div>
+          <div class="sm">Stage 5 of 8 · on schedule</div>
+        </div>
+        <div class="stat">
+          <div class="lbl">Estimated Install</div>
+          <div class="big small">14 Jul 2026</div>
+          <div class="sm">Provisional window confirmed</div>
+        </div>
+        <div class="stat">
+          <div class="lbl">Balance</div>
+          <div class="big">£14,280</div>
+          <div class="sm">of £28,560 outstanding</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2>Latest update</h2><span class="tag">New</span></div>
+        <div class="msg">
+          <div class="av">M</div>
+          <div class="body">
+            <div class="who">Marcus Reed · Your Designer</div>
+            <div class="txt">Your cabinetry has entered manufacture this week. The Calacatta quartz worktop has been ordered and templating is booked for the week of the 7th. Everything remains on track for your July install window.</div>
+            <div class="tm">Today, 11:24</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="panel">
+          <div class="panel-head"><h2>Next step</h2></div>
+          <div class="row">
+            <div class="lead"><div class="t">Pre-delivery balance</div><div class="s">Due before delivery · 7 Jul</div></div>
+            <span class="chip due">Due soon</span>
+          </div>
+          <div class="row">
+            <div class="lead"><div class="t">Confirm install access</div><div class="s">Parking &amp; entry details</div></div>
+            <button class="btn ghost">Confirm</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Your team</h2></div>
+          <div class="row"><div class="lead"><div class="t">Marcus Reed</div><div class="s">Lead Designer</div></div><div class="meta">Mon–Fri</div></div>
+          <div class="row"><div class="lead"><div class="t">Priya Anand</div><div class="s">Project Coordinator</div></div><div class="meta">Your main contact</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROGRESS ===== -->
+    <section class="view" id="progress">
+      <div class="topbar"><div class="greeting"><div class="eyebrow">Project LQ-2618</div><h1>Where your <em>kitchen</em> is at</h1></div></div>
+      <div class="panel">
+        <div class="panel-head"><h2>The journey</h2><span class="tag">Stage 5 of 8</span></div>
+        <div class="track" id="track"></div>
+      </div>
+    </section>
+
+    <!-- ===== SPECS ===== -->
+    <section class="view" id="specs">
+      <div class="topbar"><div class="greeting"><div class="eyebrow">Your specification</div><h1>Design &amp; <em>appliances</em></h1></div></div>
+      <div class="grid2">
+        <div class="panel">
+          <div class="panel-head"><h2>Appliances</h2></div>
+          <div id="appliances"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Finishes &amp; materials</h2></div>
+          <div id="finishes"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DOCUMENTS ===== -->
+    <section class="view" id="documents">
+      <div class="topbar"><div class="greeting"><div class="eyebrow">Everything in writing</div><h1>Contract &amp; <em>documents</em></h1></div></div>
+      <div class="panel">
+        <div class="panel-head"><h2>Documents</h2></div>
+        <div id="docs"></div>
+      </div>
+    </section>
+
+    <!-- ===== PAYMENTS ===== -->
+    <section class="view" id="payments">
+      <div class="topbar"><div class="greeting"><div class="eyebrow">Clear, itemised</div><h1>Invoices &amp; <em>payments</em></h1></div></div>
+      <div class="stats">
+        <div class="stat"><div class="lbl">Contract total</div><div class="big">£28,560</div></div>
+        <div class="stat"><div class="lbl">Paid to date</div><div class="big">£14,280</div><div class="sm">50% complete</div></div>
+        <div class="stat"><div class="lbl">Outstanding</div><div class="big">£14,280</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Payment schedule</h2></div>
+        <div id="pays"></div>
+      </div>
+    </section>
+
+    <!-- ===== SHOP / AFFILIATE ===== -->
+    <section class="view" id="shop">
+      <div class="topbar"><div class="greeting"><div class="eyebrow">Curated to match your design</div><h1>Furnish your <em>space</em></h1></div></div>
+      <div class="panel">
+        <div class="panel-head"><h2>Recommended pieces</h2><span class="tag">Partner links</span></div>
+        <p style="font-size:.86rem;color:var(--cream-dim);margin-bottom:1.4rem;max-width:60ch;">
+          Pieces chosen by your designer to complement the Whitlock kitchen. Buying through these links supports us at no extra cost to you.</p>
+        <div class="aff" id="aff"></div>
+      </div>
+    </section>
+
+    <!-- ===== MESSAGES ===== -->
+    <section class="view" id="messages">
+      <div class="topbar"><div class="greeting"><div class="eyebrow">Always here</div><h1>Your <em>messages</em></h1></div></div>
+      <div class="panel">
+        <div class="panel-head"><h2>Conversation</h2></div>
+        <div id="msgs"></div>
+        <div class="row" style="border-top:1px solid var(--line);margin-top:1rem;padding-top:1.4rem;">
+          <div class="lead" style="flex:1;"><div class="s">Message your project coordinator, Priya</div></div>
+          <button class="btn">Send a message</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  /* ---- progress data ---- */
+  const steps=[
+    {l:'Enquiry & showroom visit',w:'12 Mar',st:'done'},
+    {l:'Design & proposal',w:'29 Mar',st:'done'},
+    {l:'Agreement & sign-off',w:'8 Apr',st:'done'},
+    {l:'Survey & final measure',w:'24 Apr',st:'done'},
+    {l:'Manufacture & procurement',w:'In progress',st:'current',sub:'Cabinetry being made · worktop ordered'},
+    {l:'Delivery & installation',w:'Est. 14 Jul',st:''},
+    {l:'Handover & sign-off',w:'',st:''},
+    {l:'Aftercare',w:'6-week & 6-month check-ins',st:''}
+  ];
+  const track=document.getElementById('track');
+  steps.forEach(s=>{
+    const d=document.createElement('div');
+    d.className='step '+s.st;
+    d.innerHTML=`<div class="marker"><div class="ring"></div><div class="bar"></div></div>
+      <div><div class="label">${s.l}</div>${s.sub?`<div class="sub">${s.sub}</div>`:''}</div>
+      <div class="when">${s.w}</div>`;
+    track.appendChild(d);
+  });
+
+  /* ---- appliances ---- */
+  const appliances=[
+    {k:'Range cooker',v:'Lacanche Cluny 1400',s:'Dual fuel · Delft blue'},
+    {k:'Refrigeration',v:'Sub-Zero ICBID-36',s:'Integrated column'},
+    {k:'Dishwasher',v:'Miele G7000 Integrated',s:'Fully concealed'},
+    {k:'Extraction',v:'Elica Nikolatesla',s:'Induction-integrated'},
+    {k:'Tap',v:'Quooker Flex PRO3',s:'Boiling · chilled · sparkling'}
+  ];
+  const ap=document.getElementById('appliances');
+  appliances.forEach(a=>ap.insertAdjacentHTML('beforeend',
+    `<div class="spec"><div class="k">${a.k}</div><div class="v">${a.v}<small>${a.s}</small></div></div>`));
+
+  const finishes=[
+    {k:'Cabinetry',v:'In-frame Shaker',s:'Hand-painted'},
+    {k:'Paint colour',v:'Farrow & Ball',s:'Railings No.31'},
+    {k:'Worktop',v:'Calacatta quartz',s:'20mm · honed'},
+    {k:'Handles',v:'Armac Martin',s:'Aged brass'},
+    {k:'Flooring',v:'Reclaimed oak',s:'Wide plank'}
+  ];
+  const fn=document.getElementById('finishes');
+  finishes.forEach(a=>fn.insertAdjacentHTML('beforeend',
+    `<div class="spec"><div class="k">${a.k}</div><div class="v">${a.v}<small>${a.s}</small></div></div>`));
+
+  /* ---- documents ---- */
+  const docs=[
+    {t:'Sales Contract — LQ-2618',s:'Signed 8 Apr 2026 · e-signature',c:'signed',cl:'View'},
+    {t:'Final Design Drawings',s:'Rev C · approved 24 Apr',c:null,cl:'View'},
+    {t:'Itemised Specification',s:'PDF · 4 pages',c:null,cl:'View'},
+    {t:'Site Survey Report',s:'Completed 24 Apr',c:null,cl:'View'},
+    {t:'Appliance Warranties',s:'Issued on handover',c:'upcoming',cl:null}
+  ];
+  const dd=document.getElementById('docs');
+  docs.forEach(d=>dd.insertAdjacentHTML('beforeend',
+    `<div class="row"><div class="lead"><div class="t">${d.t}</div><div class="s">${d.s}</div></div>
+     <div style="display:flex;align-items:center;gap:1rem;">
+     ${d.c==='signed'?'<span class="chip signed">Signed</span>':d.c==='upcoming'?'<span class="chip upcoming">On handover</span>':''}
+     ${d.cl?`<button class="btn ghost">${d.cl}</button>`:''}</div></div>`));
+
+  /* ---- payments ---- */
+  const pays=[
+    {t:'Deposit',s:'On contract signing · 8 Apr',a:'£8,568',c:'paid'},
+    {t:'Stage payment — post-survey',s:'Paid 26 Apr',a:'£5,712',c:'paid'},
+    {t:'Pre-delivery balance',s:'Due 7 Jul',a:'£11,424',c:'due'},
+    {t:'Final balance on completion',s:'Due on sign-off',a:'£2,856',c:'upcoming'}
+  ];
+  const pp=document.getElementById('pays');
+  pays.forEach(p=>pp.insertAdjacentHTML('beforeend',
+    `<div class="row"><div class="lead"><div class="t">${p.t} · ${p.a}</div><div class="s">${p.s}</div></div>
+     <div style="display:flex;align-items:center;gap:1rem;">
+     <span class="chip ${p.c}">${p.c==='paid'?'Paid':p.c==='due'?'Due soon':'Upcoming'}</span>
+     ${p.c==='due'?'<button class="btn">Pay now</button>':''}</div></div>`));
+
+  /* ---- affiliate ---- */
+  const aff=[
+    {cat:'Seating',nm:'Carver Dining Chairs',pr:'Soho Home · from £390'},
+    {cat:'Lighting',nm:'Brass Pendant Trio',pr:'Pooky · £165 each'},
+    {cat:'Tableware',nm:'Stoneware Dinner Set',pr:'The White Company · £120'},
+    {cat:'Textiles',nm:'Linen Roman Blind',pr:'Blinds Direct · made to measure'},
+    {cat:'Styling',nm:'Walnut Chopping Boards',pr:'Divertimenti · from £45'},
+    {cat:'Storage',nm:'Glass Pantry Jars',pr:'Kilner · set of 6'}
+  ];
+  const af=document.getElementById('aff');
+  aff.forEach(a=>af.insertAdjacentHTML('beforeend',
+    `<div class="aff-card"><div class="cat">${a.cat}</div><div class="nm">${a.nm}</div>
+     <div class="pr">${a.pr}</div><div class="lk">Shop the piece</div></div>`));
+
+  /* ---- messages ---- */
+  const msgs=[
+    {who:'Marcus Reed · Designer',av:'M',txt:'Your cabinetry has entered manufacture this week — everything on track for July.',tm:'Today, 11:24'},
+    {who:'Priya Anand · Coordinator',av:'P',txt:'Hi Eleanor, just confirming the templater will need access on the morning of the 7th. Does that work for you?',tm:'Yesterday, 16:02'},
+    {who:'Eleanor Whitlock',av:'E',txt:'Perfect, we\'ll both be home that morning. Thank you!',tm:'Yesterday, 17:40'}
+  ];
+  const mm=document.getElementById('msgs');
+  msgs.forEach(m=>mm.insertAdjacentHTML('beforeend',
+    `<div class="msg"><div class="av">${m.av}</div><div class="body">
+     <div class="who">${m.who}</div><div class="txt">${m.txt}</div><div class="tm">${m.tm}</div></div></div>`));
+
+  /* ---- nav ---- */
+  const items=document.querySelectorAll('.nav-item');
+  const views=document.querySelectorAll('.view');
+  items.forEach(it=>it.addEventListener('click',()=>{
+    items.forEach(i=>i.classList.remove('active'));
+    it.classList.add('active');
+    const v=it.dataset.view;
+    views.forEach(x=>x.classList.toggle('active',x.id===v));
+    document.getElementById('sidebar').classList.remove('open');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+
+  /* ---- mobile menu ---- */
+  document.getElementById('menuBtn').addEventListener('click',()=>
+    document.getElementById('sidebar').classList.toggle('open'));
+</script>
+</body>
+</html>

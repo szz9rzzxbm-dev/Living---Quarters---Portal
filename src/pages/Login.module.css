@@ -1,0 +1,82 @@
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2.6rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+.brand span {
+  color: var(--brass-soft);
+  font-style: italic;
+  display: block;
+  font-size: 1.2rem;
+}
+
+.h1 {
+  font-size: 2rem;
+  margin: 0.3rem 0 1.8rem;
+}
+.h1 em {
+  font-style: italic;
+  color: var(--brass-soft);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.field span {
+  font-size: 0.8rem;
+  color: var(--cream-dim);
+  font-weight: 400;
+}
+.field input {
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-btn);
+  color: var(--cream);
+  padding: 0.7rem 0.8rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--brass);
+}
+
+.submit {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+.note {
+  margin-top: 1.6rem;
+  font-size: 0.78rem;
+  color: var(--cream-dim);
+  line-height: 1.5;
+}

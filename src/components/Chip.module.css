@@ -1,0 +1,28 @@
+.chip {
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-btn);
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  color: var(--cream-dim);
+}
+
+.paid,
+.signed {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.due {
+  color: var(--brass-soft);
+  border-color: var(--brass);
+}
+
+.upcoming,
+.neutral {
+  color: var(--cream-dim);
+  border-color: var(--line);
+}

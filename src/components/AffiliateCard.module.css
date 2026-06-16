@@ -1,0 +1,48 @@
+.card {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.2s var(--ease);
+}
+
+.card:hover {
+  border-color: var(--brass);
+}
+
+.cat {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.nm {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.pr {
+  font-size: 0.8rem;
+  color: var(--cream-dim);
+}
+
+.lk {
+  margin-top: auto;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lk::after {
+  content: '↗';
+}
