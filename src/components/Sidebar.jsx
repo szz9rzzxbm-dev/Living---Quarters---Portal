@@ -1,4 +1,5 @@
 import NavItem from './NavItem'
+import Brand from './Brand'
 import styles from './Sidebar.module.css'
 import { useAuth } from '../hooks/useAuth'
 import { useProject } from '../hooks/useProject'
@@ -23,12 +24,7 @@ export default function Sidebar({ open = false, onNavigate }) {
 
   return (
     <aside className={`${styles.sidebar} ${open ? styles.open : ''}`}>
-      <div>
-        <div className={styles.brand}>
-          The Living<span>Quarters</span>
-        </div>
-        <div className={styles.brandSub}>Client Portal</div>
-      </div>
+      <Brand sub="Client Portal" size="sm" />
 
       <nav className={styles.nav} onClick={onNavigate}>
         {NAV.map((item) => (

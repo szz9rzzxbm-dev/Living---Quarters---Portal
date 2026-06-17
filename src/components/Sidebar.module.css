@@ -9,30 +9,6 @@
   flex-direction: column;
 }
 
-.brand {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.45rem;
-  line-height: 1.1;
-  letter-spacing: 0.01em;
-  margin-bottom: 0.2rem;
-}
-
-.brand span {
-  color: var(--brass-soft);
-  font-style: italic;
-  display: block;
-  font-size: 1.1rem;
-}
-
-.brandSub {
-  font-size: 0.62rem;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--brass);
-  margin-top: 0.7rem;
-}
-
 .nav {
   margin-top: 2.6rem;
   display: flex;

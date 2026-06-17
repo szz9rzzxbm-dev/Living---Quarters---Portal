@@ -15,22 +15,9 @@
   max-width: 400px;
 }
 
-.brand {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 1.1;
-}
-.brand span {
-  color: var(--brass-soft);
-  font-style: italic;
-  display: block;
-  font-size: 1.2rem;
-}
-
 .h1 {
   font-size: 2rem;
-  margin: 0.3rem 0 1.8rem;
+  margin: 1.1rem 0 1.8rem;
 }
 .h1 em {
   font-style: italic;
@@ -85,8 +72,32 @@
   margin-top: -0.2rem;
 }
 
-.note {
+.help {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-top: 1.6rem;
+}
+
+.helpLink {
+  flex: 1;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-btn);
+  padding: 0.6rem 0.5rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--cream-dim);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.helpLink:hover {
+  border-color: var(--brass);
+  color: var(--brass-soft);
+}
+
+.note {
+  margin-top: 1.2rem;
   font-size: 0.78rem;
   color: var(--cream-dim);
   line-height: 1.5;

@@ -6,8 +6,8 @@ import Panel from '../../components/Panel'
  */
 export default function NewProject() {
   return (
-    <div className="view" style={{ padding: '2.6rem 3rem', maxWidth: 'var(--content-max)' }}>
-      <PageHeader eyebrow="Admin CRM" heading={<>New <em>project</em></>} />
+    <div className="view">
+      <PageHeader eyebrow="Onboarding" heading={<>New <em>project</em></>} />
       <Panel title="Create client & project">
         <p className="muted">A form to onboard a new client and open their project will live here. Coming in a later phase.</p>
       </Panel>

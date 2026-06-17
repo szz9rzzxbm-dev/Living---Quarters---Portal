@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import PortalLayout from './components/PortalLayout'
+import AdminLayout from './components/AdminLayout'
 import ProtectedRoute from './components/ProtectedRoute'
 
 // Client portal views
@@ -47,10 +48,12 @@ export default function App() {
 
       {/* Admin CRM — requires an authenticated admin */}
       <Route element={<ProtectedRoute role="admin" />}>
-        <Route path="/admin" element={<Dashboard />} />
-        <Route path="/admin/projects/:id" element={<ProjectDetail />} />
-        <Route path="/admin/clients" element={<ClientList />} />
-        <Route path="/admin/clients/new" element={<NewProject />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="projects/:id" element={<ProjectDetail />} />
+          <Route path="clients" element={<ClientList />} />
+          <Route path="clients/new" element={<NewProject />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<NotFound />} />

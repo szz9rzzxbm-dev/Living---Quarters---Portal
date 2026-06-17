@@ -6,8 +6,8 @@ import Panel from '../../components/Panel'
  */
 export default function ClientList() {
   return (
-    <div className="view" style={{ padding: '2.6rem 3rem', maxWidth: 'var(--content-max)' }}>
-      <PageHeader eyebrow="Admin CRM" heading={<>Your <em>clients</em></>} />
+    <div className="view">
+      <PageHeader eyebrow="Client management" heading={<>Your <em>clients</em></>} />
       <Panel title="Clients">
         <p className="muted">Every client and their projects will be listed here. Coming in a later phase.</p>
       </Panel>

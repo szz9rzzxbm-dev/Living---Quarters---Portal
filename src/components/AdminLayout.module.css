@@ -1,0 +1,26 @@
+.wrap {
+  min-height: 100vh;
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 3rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.main {
+  padding: 2.6rem 3rem 6rem;
+  max-width: var(--content-max);
+}
+
+@media (max-width: 860px) {
+  .bar {
+    padding: 1.2rem 1.4rem;
+  }
+  .main {
+    padding: 1.6rem 1.4rem 5rem;
+  }
+}

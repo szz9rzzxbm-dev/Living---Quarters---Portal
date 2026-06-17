@@ -8,8 +8,8 @@ import Panel from '../../components/Panel'
 export default function ProjectDetail() {
   const { id } = useParams()
   return (
-    <div className="view" style={{ padding: '2.6rem 3rem', maxWidth: 'var(--content-max)' }}>
-      <PageHeader eyebrow="Admin CRM" heading={<>Project <em>detail</em></>} refLabel="Project" refValue={id} />
+    <div className="view">
+      <PageHeader eyebrow="Project management" heading={<>Project <em>detail</em></>} refLabel="Project" refValue={id} />
       <Panel title="Manage project">
         <p className="muted">Stage advancement, document upload and messaging will live here. Coming in a later phase.</p>
       </Panel>

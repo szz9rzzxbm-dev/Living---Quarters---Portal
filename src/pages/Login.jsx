@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import styles from './Login.module.css'
 import Button from '../components/Button'
+import Brand from '../components/Brand'
 import { useAuth } from '../hooks/useAuth'
 
 /**
@@ -41,12 +42,7 @@ export default function Login() {
   return (
     <div className={styles.wrap}>
       <div className={styles.card}>
-        <div className={styles.brand}>
-          The Living<span>Quarters</span>
-        </div>
-        <div className="eyebrow" style={{ marginTop: '0.9rem' }}>
-          Client Portal
-        </div>
+        <Brand sub="Client Portal" size="md" />
         <h1 className={styles.h1}>
           Welcome <em>back</em>
         </h1>
@@ -82,7 +78,16 @@ export default function Login() {
           </Button>
         </form>
 
-        <p className={styles.note}>Accounts are created by your project team. Trouble signing in? Contact your coordinator.</p>
+        <div className={styles.help}>
+          <a className={styles.helpLink} href="#forgotten">
+            Forgotten password?
+          </a>
+          <a className={styles.helpLink} href="mailto:hello@thelivingquarters.com">
+            Contact your coordinator
+          </a>
+        </div>
+
+        <p className={styles.note}>Accounts are created by your project team — there’s no public sign-up.</p>
 
         <div className={styles.demo}>
           <span>Demo logins</span>

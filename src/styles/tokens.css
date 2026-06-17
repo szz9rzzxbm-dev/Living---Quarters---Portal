@@ -4,17 +4,19 @@
    ============================================================ */
 
 :root {
-  /* ---- Colour ---- */
-  --ink: #15130f;        /* near-black background */
-  --panel: #1c1915;      /* elevated surfaces / cards */
-  --panel-2: #23201a;    /* nested panels */
-  --cream: #ede6d6;      /* primary text */
-  --cream-dim: #a89f8c;  /* secondary / muted text */
+  /* ---- Colour ----
+     Warm, dark and considered — lifted slightly from near-black so surfaces
+     read with a touch more warmth while keeping the premium feel. */
+  --ink: #221e18;        /* background */
+  --panel: #2b261f;      /* elevated surfaces / cards */
+  --panel-2: #332e25;    /* nested panels */
+  --cream: #efe8d9;      /* primary text */
+  --cream-dim: #b3aa96;  /* secondary / muted text */
   --cream-faint: #6e665725;
-  --line: #332e25;       /* borders and dividers */
-  --brass: #b08d57;      /* primary accent — use sparingly */
-  --brass-soft: #c9a876; /* softer accent for interactive states */
-  --green: #7e8b5c;      /* success / paid states */
+  --line: #443e31;       /* borders and dividers */
+  --brass: #b89360;      /* primary accent — use sparingly */
+  --brass-soft: #cdad7b; /* softer accent for interactive states */
+  --green: #87935f;      /* success / paid states */
 
   /* ---- Typography ---- */
   --font-display: 'Cormorant Garamond', Georgia, serif;
