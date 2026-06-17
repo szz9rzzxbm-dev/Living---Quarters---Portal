@@ -1,11 +1,15 @@
+import { useState } from 'react'
 import PageHeader from '../../components/PageHeader'
 import Panel from '../../components/Panel'
 import DocumentRow from '../../components/DocumentRow'
+import Modal from '../../components/Modal'
+import DocumentViewer from '../../components/DocumentViewer'
 import Loader from '../../components/Loader'
 import { useProject } from '../../hooks/useProject'
 
 export default function Documents() {
   const { loading, documents } = useProject()
+  const [openDoc, setOpenDoc] = useState(null)
 
   if (loading) {
     return (
@@ -20,9 +24,13 @@ export default function Documents() {
       <PageHeader eyebrow="Everything in writing" heading={<>Contract &amp; <em>documents</em></>} />
       <Panel title="Documents">
         {documents.map((doc) => (
-          <DocumentRow key={doc.title} {...doc} />
+          <DocumentRow key={doc.title} {...doc} onView={() => setOpenDoc(doc)} />
         ))}
       </Panel>
+
+      <Modal open={!!openDoc} onClose={() => setOpenDoc(null)} title="Document">
+        <DocumentViewer doc={openDoc} />
+      </Modal>
     </div>
   )
 }

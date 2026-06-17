@@ -3,9 +3,9 @@ import Button from './Button'
 
 /**
  * A single document line. `status` drives an optional chip; `action` an optional
- * ghost button label. Uses the shared .row primitive from global.css.
+ * ghost button label that calls `onView` (e.g. to open the document viewer).
  */
-export default function DocumentRow({ title, sub, status, action }) {
+export default function DocumentRow({ title, sub, status, action, onView }) {
   return (
     <div className="row">
       <div className="lead">
@@ -16,7 +16,7 @@ export default function DocumentRow({ title, sub, status, action }) {
         {status === 'signed' && <Chip tone="signed">Signed</Chip>}
         {status === 'upcoming' && <Chip tone="upcoming">On handover</Chip>}
         {action && (
-          <Button variant="ghost" as="button">
+          <Button variant="ghost" as="button" onClick={onView}>
             {action}
           </Button>
         )}

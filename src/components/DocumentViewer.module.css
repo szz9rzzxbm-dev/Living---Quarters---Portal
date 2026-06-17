@@ -1,0 +1,118 @@
+/* A warm "paper" surface — deliberately light against the dark UI so it reads
+   like an actual document you've opened. */
+.paper {
+  background: #ece5d6;
+  color: #221e18;
+  border-radius: 2px;
+  padding: 2.2rem 2.4rem;
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.letterhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #c9bfa6;
+  padding-bottom: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.mark {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.05;
+  color: #221e18;
+}
+.mark span {
+  display: block;
+  font-style: italic;
+  color: #8a6d3f;
+  font-size: 0.95rem;
+}
+
+.docMeta {
+  font-size: 0.72rem;
+  color: #6f6450;
+  text-align: right;
+  max-width: 16ch;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-bottom: 1.4rem;
+  color: #221e18;
+}
+
+.section {
+  margin-bottom: 1.2rem;
+}
+
+.h {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.3rem;
+  color: #3a3326;
+}
+
+.p {
+  font-size: 0.9rem;
+  color: #45402f;
+}
+
+/* spec list */
+.specList {
+  margin-bottom: 1.4rem;
+}
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid #d4cab1;
+}
+.specRow:last-child {
+  border-bottom: none;
+}
+.specK {
+  font-size: 0.82rem;
+  color: #6f6450;
+}
+.specV {
+  font-size: 0.88rem;
+  color: #221e18;
+  text-align: right;
+}
+
+/* plan drawing */
+.plan {
+  width: 100%;
+  height: auto;
+  background: #f3eee1;
+  border: 1px solid #d4cab1;
+  border-radius: 2px;
+  margin-bottom: 1.6rem;
+}
+
+.signature {
+  margin-top: 1.8rem;
+  padding-top: 1rem;
+  border-top: 1px solid #c9bfa6;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: #3a3326;
+}
+
+.footer {
+  margin-top: 1.8rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: #8a7f66;
+}

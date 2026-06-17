@@ -58,10 +58,93 @@ export const finishes = [
 ]
 
 export const documents = [
-  { title: 'Sales Contract — LQ-2618', sub: 'Signed 8 Apr 2026 · e-signature', status: 'signed', action: 'View' },
-  { title: 'Final Design Drawings', sub: 'Rev C · approved 24 Apr', action: 'View' },
-  { title: 'Itemised Specification', sub: 'PDF · 4 pages', action: 'View' },
-  { title: 'Site Survey Report', sub: 'Completed 24 Apr', action: 'View' },
+  {
+    title: 'Sales Contract — LQ-2618',
+    sub: 'Signed 8 Apr 2026 · e-signature',
+    status: 'signed',
+    action: 'View',
+    docType: 'contract',
+    meta: 'Issued 2 Apr 2026 · 6 pages',
+    body: [
+      {
+        h: '1 · Parties',
+        p: 'This agreement is made between The Living Quarters Ltd (“the Company”) and Eleanor & James Whitlock (“the Client”) of The Old Rectory, Surrey.',
+      },
+      {
+        h: '2 · The works',
+        p: 'Design, manufacture and installation of a bespoke in-frame Shaker kitchen as detailed in the Final Design Drawings (Rev C) and the Itemised Specification, both of which form part of this agreement.',
+      },
+      {
+        h: '3 · Contract sum',
+        p: 'The total contract sum is £28,560 including VAT, payable in accordance with the agreed payment schedule. The deposit is due on signing; manufacture does not begin until the deposit is received.',
+      },
+      {
+        h: '4 · Timeline',
+        p: 'Manufacture commences following survey sign-off. Provisional installation window: the week commencing 14 July 2026, to be confirmed in writing no less than 14 days in advance.',
+      },
+    ],
+    signature: 'Signed electronically · E. Whitlock · 8 April 2026',
+  },
+  {
+    title: 'Final Design Drawings',
+    sub: 'Rev C · approved 24 Apr',
+    action: 'View',
+    docType: 'drawing',
+    meta: 'Rev C · approved 24 Apr 2026',
+    plan: true,
+    body: [
+      {
+        h: 'General arrangement',
+        p: 'Galley run to the north wall with a central island, 2400 × 1200. Tall units to the east wall house the integrated refrigeration and ovens. Elevations drawn to 1:20.',
+      },
+      {
+        h: 'Notes',
+        p: 'All dimensions to be checked on site at final survey. Services shown indicatively — see survey report for confirmed positions.',
+      },
+    ],
+  },
+  {
+    title: 'Itemised Specification',
+    sub: 'PDF · 4 pages',
+    action: 'View',
+    docType: 'spec',
+    meta: 'PDF · 4 pages',
+    items: [
+      { k: 'Cabinetry', v: 'In-frame Shaker · hand-painted' },
+      { k: 'Paint colour', v: 'Farrow & Ball · Railings No.31' },
+      { k: 'Worktop', v: 'Calacatta quartz · 20mm honed' },
+      { k: 'Handles', v: 'Armac Martin · aged brass' },
+      { k: 'Range cooker', v: 'Lacanche Cluny 1400 · Delft blue' },
+      { k: 'Refrigeration', v: 'Sub-Zero ICBID-36 · integrated' },
+      { k: 'Tap', v: 'Quooker Flex PRO3' },
+      { k: 'Flooring', v: 'Reclaimed oak · wide plank' },
+    ],
+  },
+  {
+    title: 'Site Survey Report',
+    sub: 'Completed 24 Apr',
+    action: 'View',
+    docType: 'survey',
+    meta: 'Completed 24 April 2026 · surveyor: D. Okafor',
+    body: [
+      {
+        h: 'Access',
+        p: 'Double-door access to the rear. Delivery vehicle can park on the gravel drive. No restrictions noted; protective coverings required for the hallway.',
+      },
+      {
+        h: 'Services',
+        p: 'Gas supply present to the north wall. Two double sockets to relocate. Waste run confirmed to the existing soil stack; new feed required for the island.',
+      },
+      {
+        h: 'Walls & floor',
+        p: 'Solid masonry to external walls; stud partition to the utility. Floor level within tolerance (3mm across the run). No remedial works required.',
+      },
+      {
+        h: 'Actions before manufacture',
+        p: 'Confirm final socket positions with the client. Electrician to first-fix island feed week commencing 7 July.',
+      },
+    ],
+  },
   { title: 'Appliance Warranties', sub: 'Issued on handover', status: 'upcoming' },
 ]
 
