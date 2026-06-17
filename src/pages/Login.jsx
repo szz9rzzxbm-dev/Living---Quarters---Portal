@@ -39,6 +39,23 @@ export default function Login() {
     navigate(home, { replace: true })
   }
 
+  // One-click entry for the preview — signs in as the demo client.
+  const enterDemo = async (role) => {
+    setError(null)
+    setSubmitting(true)
+    const creds =
+      role === 'admin'
+        ? { email: 'team@thelivingquarters.com', target: '/admin' }
+        : { email: 'eleanor@example.com', target: '/portal' }
+    const { error } = await signIn(creds.email, 'living')
+    setSubmitting(false)
+    if (error) {
+      setError(error.message)
+      return
+    }
+    navigate(creds.target, { replace: true })
+  }
+
   return (
     <div className={styles.wrap}>
       <div className={styles.card}>
@@ -77,6 +94,18 @@ export default function Login() {
             {submitting ? 'Signing in…' : 'Sign in'}
           </Button>
         </form>
+
+        <div className={styles.preview}>
+          <div className={styles.previewLabel}>Just looking around?</div>
+          <div className={styles.previewBtns}>
+            <Button variant="ghost" className={styles.previewBtn} onClick={() => enterDemo('client')} disabled={submitting}>
+              Step inside the client portal
+            </Button>
+            <Button variant="ghost" className={styles.previewBtn} onClick={() => enterDemo('admin')} disabled={submitting}>
+              View the team dashboard
+            </Button>
+          </div>
+        </div>
 
         <div className={styles.help}>
           <a className={styles.helpLink} href="#forgotten">

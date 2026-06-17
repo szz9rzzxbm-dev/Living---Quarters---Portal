@@ -72,6 +72,31 @@
   margin-top: -0.2rem;
 }
 
+.preview {
+  margin-top: 1.6rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.previewLabel {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.8rem;
+}
+
+.previewBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.previewBtn {
+  width: 100%;
+  text-align: center;
+}
+
 .help {
   display: flex;
   align-items: center;
