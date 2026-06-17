@@ -4,9 +4,20 @@ import StatCard from '../../components/StatCard'
 import MessageThread from '../../components/MessageThread'
 import Chip from '../../components/Chip'
 import Button from '../../components/Button'
-import { client, project, team, messages } from '../../lib/mockData'
+import Loader from '../../components/Loader'
+import { useProject } from '../../hooks/useProject'
 
 export default function Overview() {
+  const { loading, client, project, team, messages } = useProject()
+
+  if (loading) {
+    return (
+      <div className="view">
+        <Loader label="Loading your overview" />
+      </div>
+    )
+  }
+
   return (
     <div className="view">
       <PageHeader

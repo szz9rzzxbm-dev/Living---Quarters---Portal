@@ -1,5 +1,7 @@
 import NavItem from './NavItem'
 import styles from './Sidebar.module.css'
+import { useAuth } from '../hooks/useAuth'
+import { useProject } from '../hooks/useProject'
 
 const NAV = [
   { to: '/portal', label: 'Overview', end: true },
@@ -16,6 +18,9 @@ const NAV = [
  * `onNavigate` lets the parent close the drawer after a selection.
  */
 export default function Sidebar({ open = false, onNavigate }) {
+  const { signOut } = useAuth()
+  const { client } = useProject()
+
   return (
     <aside className={`${styles.sidebar} ${open ? styles.open : ''}`}>
       <div>
@@ -34,8 +39,11 @@ export default function Sidebar({ open = false, onNavigate }) {
       </nav>
 
       <div className={styles.foot}>
-        <div className={styles.name}>Eleanor &amp; James Whitlock</div>
-        <div>The Old Rectory, Surrey</div>
+        <div className={styles.name}>{client?.fullName || 'Your project'}</div>
+        <div>{client?.address}</div>
+        <button className={styles.signout} onClick={signOut}>
+          Sign out
+        </button>
       </div>
     </aside>
   )

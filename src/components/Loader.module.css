@@ -1,0 +1,35 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--cream-dim);
+  font-size: 0.85rem;
+  padding: 2rem 0;
+}
+
+.full {
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brass);
+  animation: pulse 1.1s var(--ease) infinite;
+}
+
+.text {
+  letter-spacing: 0.04em;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}

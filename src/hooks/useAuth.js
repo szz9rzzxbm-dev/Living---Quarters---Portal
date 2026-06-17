@@ -1,15 +1,12 @@
+import { useAuthContext } from '../context/AuthContext'
+
 /**
- * Auth state — NOT connected yet.
+ * Auth state for the app: { user, loading, signIn, signOut }.
  *
- * Frontend-only stub. Returns a signed-in client so the portal is reachable
- * during development. Once Supabase Auth is wired up, this will subscribe to
- * the session and expose the real user, role and sign-in / sign-out actions.
+ * `user` is null when signed out, otherwise { id, email, role, name, firstName, ... }.
+ * Backed by AuthContext, which currently uses the mock auth backend and will use
+ * Supabase Auth once connected.
  */
 export function useAuth() {
-  return {
-    loading: false,
-    user: { email: 'eleanor@example.com', role: 'client' },
-    signIn: async () => {},
-    signOut: async () => {},
-  }
+  return useAuthContext()
 }

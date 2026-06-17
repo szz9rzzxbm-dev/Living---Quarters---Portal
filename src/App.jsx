@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import PortalLayout from './components/PortalLayout'
+import ProtectedRoute from './components/ProtectedRoute'
 
 // Client portal views
 import Overview from './pages/client/Overview'
@@ -22,8 +23,8 @@ import NewProject from './pages/admin/NewProject'
 /**
  * Routing for the whole app.
  *
- * Frontend-only phase: routes are NOT yet protected — auth guards
- * (client vs admin role) will wrap these once Supabase Auth is connected.
+ * Auth is backed by the mock auth backend for now (no Supabase project yet),
+ * but route protection and client/admin role separation are fully enforced.
  */
 export default function App() {
   return (
@@ -31,22 +32,26 @@ export default function App() {
       <Route path="/" element={<Navigate to="/portal" replace />} />
       <Route path="/login" element={<Login />} />
 
-      {/* Client portal (protected later — requires client role) */}
-      <Route path="/portal" element={<PortalLayout />}>
-        <Route index element={<Overview />} />
-        <Route path="progress" element={<Progress />} />
-        <Route path="specs" element={<Specs />} />
-        <Route path="documents" element={<Documents />} />
-        <Route path="payments" element={<Payments />} />
-        <Route path="shop" element={<Shop />} />
-        <Route path="messages" element={<Messages />} />
+      {/* Client portal — requires an authenticated client */}
+      <Route element={<ProtectedRoute role="client" />}>
+        <Route path="/portal" element={<PortalLayout />}>
+          <Route index element={<Overview />} />
+          <Route path="progress" element={<Progress />} />
+          <Route path="specs" element={<Specs />} />
+          <Route path="documents" element={<Documents />} />
+          <Route path="payments" element={<Payments />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="messages" element={<Messages />} />
+        </Route>
       </Route>
 
-      {/* Admin CRM (protected later — requires admin role) */}
-      <Route path="/admin" element={<Dashboard />} />
-      <Route path="/admin/projects/:id" element={<ProjectDetail />} />
-      <Route path="/admin/clients" element={<ClientList />} />
-      <Route path="/admin/clients/new" element={<NewProject />} />
+      {/* Admin CRM — requires an authenticated admin */}
+      <Route element={<ProtectedRoute role="admin" />}>
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/projects/:id" element={<ProjectDetail />} />
+        <Route path="/admin/clients" element={<ClientList />} />
+        <Route path="/admin/clients/new" element={<NewProject />} />
+      </Route>
 
       <Route path="*" element={<NotFound />} />
     </Routes>

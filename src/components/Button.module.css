@@ -19,6 +19,15 @@
   background: var(--brass);
 }
 
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn:disabled:hover {
+  background: var(--brass-soft);
+}
+
 .ghost {
   background: transparent;
   color: var(--brass-soft);

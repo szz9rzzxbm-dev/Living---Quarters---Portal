@@ -1,9 +1,20 @@
 import PageHeader from '../../components/PageHeader'
 import Panel from '../../components/Panel'
 import AffiliateCard from '../../components/AffiliateCard'
-import { affiliates } from '../../lib/mockData'
+import Loader from '../../components/Loader'
+import { useProject } from '../../hooks/useProject'
 
 export default function Shop() {
+  const { loading, affiliates } = useProject()
+
+  if (loading) {
+    return (
+      <div className="view">
+        <Loader label="Loading recommendations" />
+      </div>
+    )
+  }
+
   return (
     <div className="view">
       <PageHeader eyebrow="Curated to match your design" heading={<>Furnish your <em>space</em></>} />

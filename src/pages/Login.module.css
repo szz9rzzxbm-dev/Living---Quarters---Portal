@@ -74,9 +74,38 @@
   margin-top: 0.4rem;
 }
 
+.submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: var(--brass-soft);
+  margin-top: -0.2rem;
+}
+
 .note {
   margin-top: 1.6rem;
   font-size: 0.78rem;
   color: var(--cream-dim);
   line-height: 1.5;
+}
+
+.demo {
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.74rem;
+  color: var(--cream-dim);
+  line-height: 1.7;
+}
+
+.demo span {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.5rem;
 }

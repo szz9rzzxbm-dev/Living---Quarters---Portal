@@ -53,6 +53,25 @@
   font-weight: 400;
 }
 
+.signout {
+  margin-top: 0.9rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--brass-soft);
+  font-family: inherit;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: color 0.2s var(--ease);
+}
+
+.signout:hover {
+  color: var(--brass);
+}
+
 /* Off-canvas drawer on mobile */
 @media (max-width: 860px) {
   .sidebar {
