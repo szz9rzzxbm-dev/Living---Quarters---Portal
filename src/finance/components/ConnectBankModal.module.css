@@ -1,0 +1,103 @@
+.intro {
+  color: var(--cream-dim);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1.2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.bank {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s var(--ease);
+  text-align: left;
+}
+
+.bank:hover {
+  border-color: var(--brass);
+}
+
+.mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #100e0a;
+  flex-shrink: 0;
+}
+
+.connecting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+}
+
+.connecting .mark {
+  width: 44px;
+  height: 44px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.connectingTitle {
+  color: var(--cream);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.stepList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: stretch;
+  max-width: 320px;
+}
+
+.stepList li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cream-faint);
+  font-size: 0.85rem;
+  transition: color 0.2s var(--ease);
+}
+
+.stepList li.done {
+  color: var(--cream-dim);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  flex-shrink: 0;
+  transition: background 0.2s var(--ease);
+}
+
+.stepList li.done .dot {
+  background: var(--green);
+}

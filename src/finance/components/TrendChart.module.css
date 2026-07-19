@@ -1,0 +1,97 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legend {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  color: var(--cream-dim);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 160px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bars {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  width: 100%;
+  justify-content: center;
+}
+
+.barTrack {
+  position: relative;
+  width: 18px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 4px 4px 0 0;
+  transition: opacity 0.15s var(--ease);
+  cursor: pointer;
+}
+
+.bar:hover {
+  opacity: 0.85;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 6px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  color: var(--cream);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.monthLabel {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--cream-dim);
+}

@@ -21,6 +21,13 @@ import ProjectDetail from './pages/admin/ProjectDetail'
 import ClientList from './pages/admin/ClientList'
 import NewProject from './pages/admin/NewProject'
 
+// Personal finance tracker (separate section, own mock data layer)
+import FinanceLayout from './finance/components/FinanceLayout'
+import FinanceConnect from './finance/pages/FinanceConnect'
+import FinanceDashboard from './finance/pages/FinanceDashboard'
+import FinanceTransactions from './finance/pages/FinanceTransactions'
+import FinanceAccounts from './finance/pages/FinanceAccounts'
+
 /**
  * Routing for the whole app.
  *
@@ -54,6 +61,14 @@ export default function App() {
           <Route path="clients" element={<ClientList />} />
           <Route path="clients/new" element={<NewProject />} />
         </Route>
+      </Route>
+
+      {/* Personal finance tracker — no auth gate, own mock data layer */}
+      <Route path="/finance" element={<FinanceLayout />}>
+        <Route index element={<FinanceDashboard />} />
+        <Route path="connect" element={<FinanceConnect />} />
+        <Route path="transactions" element={<FinanceTransactions />} />
+        <Route path="accounts" element={<FinanceAccounts />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
